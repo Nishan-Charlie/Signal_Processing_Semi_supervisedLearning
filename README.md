@@ -1,11 +1,6 @@
 # ssleeg — Semi-Supervised Learning Benchmark for EEG Emotion Recognition
 
-A modular, reproducible, **publication-grade** benchmark framework for evaluating
-semi-supervised learning (SSL) methods on EEG-based emotion recognition — built so
-you can drop in **your own proposed method** and compare it against every baseline
-under *identical* data splits, backbones, seeds, augmentations, and metrics.
-
-The framework ships with a **synthetic EEG dataset** so the *entire* pipeline
+The framework ships with a **synthetic EEG dataset** so the _entire_ pipeline
 (train → evaluate → benchmark → tables → figures → statistics) runs end-to-end in
 under a minute, with **no data downloads required**.
 
@@ -13,20 +8,20 @@ under a minute, with **no data downloads required**.
 
 ## ✨ Features
 
-| Area | What's included |
-| --- | --- |
-| **SSL methods** | Supervised baseline, Π-Model, Mean Teacher, VAT, ICT, Pseudo-Label, MixMatch, FixMatch, FlexMatch, SimCLR (contrastive), + a `your_method` template |
-| **Backbones** | EEGNet, ShallowConvNet, DeepConvNet, CNN-LSTM, EEG-Transformer, EEG-Conformer |
-| **Datasets** | Synthetic (built-in), DEAP, SEED (+ informative placeholders for SEED-IV/V, DREAMER, AMIGOS, MPED, FACED) |
-| **Protocols** | Cross-subject, cross-session, random — all with stratified label-efficiency splits and **no leakage** |
-| **Label efficiency** | Arbitrary labeled ratios (1%, 2%, 5%, 10%, 20%, 30%, 50%, …) |
-| **Augmentations** | Time/frequency/channel domain, MixUp, weak/strong views for FixMatch-family |
-| **Training** | AMP mixed precision, grad clipping, LR warmup+cosine, EMA teachers, early stopping, checkpoint/resume |
-| **Tracking** | TensorBoard + optional W&B + JSONL |
-| **Metrics** | Accuracy, Balanced Acc, Precision/Recall/F1, Cohen's κ, ROC-AUC |
-| **Statistics** | Mean±std, CIs, paired t-test, Wilcoxon, Friedman + Nemenyi, critical-difference diagrams |
-| **Reporting** | Auto-generated benchmark tables in Markdown / CSV / LaTeX |
-| **Figures** | Confusion matrices, ROC, learning curves, label-efficiency curves, t-SNE/UMAP/PCA embeddings |
+| Area                 | What's included                                                                                                                                     |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **SSL methods**      | Supervised baseline, Π-Model, Mean Teacher, VAT, ICT, Pseudo-Label, MixMatch, FixMatch, FlexMatch, SimCLR (contrastive), + a `your_method` template |
+| **Backbones**        | EEGNet, ShallowConvNet, DeepConvNet, CNN-LSTM, EEG-Transformer, EEG-Conformer                                                                       |
+| **Datasets**         | Synthetic (built-in), DEAP, SEED (+ informative placeholders for SEED-IV/V, DREAMER, AMIGOS, MPED, FACED)                                           |
+| **Protocols**        | Cross-subject, cross-session, random — all with stratified label-efficiency splits and**no leakage**                                                |
+| **Label efficiency** | Arbitrary labeled ratios (1%, 2%, 5%, 10%, 20%, 30%, 50%, …)                                                                                        |
+| **Augmentations**    | Time/frequency/channel domain, MixUp, weak/strong views for FixMatch-family                                                                         |
+| **Training**         | AMP mixed precision, grad clipping, LR warmup+cosine, EMA teachers, early stopping, checkpoint/resume                                               |
+| **Tracking**         | TensorBoard + optional W&B + JSONL                                                                                                                  |
+| **Metrics**          | Accuracy, Balanced Acc, Precision/Recall/F1, Cohen's κ, ROC-AUC                                                                                     |
+| **Statistics**       | Mean±std, CIs, paired t-test, Wilcoxon, Friedman + Nemenyi, critical-difference diagrams                                                            |
+| **Reporting**        | Auto-generated benchmark tables in Markdown / CSV / LaTeX                                                                                           |
+| **Figures**          | Confusion matrices, ROC, learning curves, label-efficiency curves, t-SNE/UMAP/PCA embeddings                                                        |
 
 ---
 
@@ -116,7 +111,7 @@ Every field in [configs/base.yaml](configs/base.yaml) is documented inline.
 
 ---
 
-## 🧪 Plugging in *your* method (fair comparison)
+## 🧪 Plugging in _your_ method (fair comparison)
 
 1. Edit [`src/ssleeg/methods/your_method.py`](src/ssleeg/methods/your_method.py) —
    implement `compute_loss(labeled, unlabeled, step)` (a strong FixMatch+MeanTeacher
@@ -146,10 +141,10 @@ they are **not** bundled.
 
 ## ♻️ Reproducibility
 
-* Global seeding of Python/NumPy/PyTorch + deterministic cuDNN (`deterministic: true`).
-* Seeded DataLoader workers and generators.
-* The exact resolved config is saved to each run directory (`config.yaml`).
-* Multi-seed runs report mean ± std and confidence intervals.
+- Global seeding of Python/NumPy/PyTorch + deterministic cuDNN (`deterministic: true`).
+- Seeded DataLoader workers and generators.
+- The exact resolved config is saved to each run directory (`config.yaml`).
+- Multi-seed runs report mean ± std and confidence intervals.
 
 ---
 
