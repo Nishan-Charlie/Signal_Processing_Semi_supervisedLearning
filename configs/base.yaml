@@ -1,0 +1,56 @@
+# Base configuration. Experiment configs inherit this via `_base_: [../base.yaml]`
+# and override only what they need. CLI `--set a.b=c` overrides anything here.
+
+seed: 0
+seeds: [0, 1, 2]          # used by `ssleeg-train --seeds` / benchmark if not overridden
+deterministic: true
+
+data:
+  name: synthetic         # any key in `ssleeg-train --list datasets`
+  label_ratio: 0.1        # fraction of TRAIN pool kept labeled
+  protocol: random        # random | subject | session
+  test_frac: 0.2
+  val_frac: 0.1
+  normalize: channel      # channel | trial | none
+  loader: {}              # kwargs forwarded to the dataset loader (root, target, ...)
+
+augment:
+  labeled: [{name: gaussian_noise, sigma: 0.05, p: 0.5}]
+  eval: null              # identity at eval time
+  weak: weak_default      # named preset (see data/augment.py) or an explicit list
+  strong: strong_default
+
+model:
+  name: eegnet            # any key in `ssleeg-train --list models`
+  dropout: 0.25
+  args: {}                # backbone-specific kwargs
+  # projection: {out_dim: 128}   # uncomment for contrastive methods (SimCLR)
+
+method:
+  name: fixmatch          # any key in `ssleeg-train --list methods`
+  # method-specific hyperparameters are read with sensible defaults; override here.
+
+optim:
+  optimizer: adamw
+  lr: 1.0e-3
+  weight_decay: 5.0e-4
+  scheduler: cosine
+  warmup_steps: 0
+
+train:
+  epochs: 30
+  batch_size: 64
+  eval_batch_size: 256
+  mu: 1                   # unlabeled batch = mu * batch_size (FixMatch convention)
+  amp: true              # mixed precision (auto-disabled on CPU)
+  grad_clip: 1.0
+  eval_metric: balanced_accuracy
+  early_stopping_patience: 10
+  log_every: 50
+  tensorboard: true
+  wandb: false
+  wandb_project: ssleeg
+
+loader:
+  num_workers: 0
+  pin_memory: true

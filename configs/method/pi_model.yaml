@@ -1,0 +1,4 @@
+method:
+  name: pi_model
+  consistency_weight: 1.0
+  rampup_steps: 1000

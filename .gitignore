@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Experiments / outputs
+runs/
+outputs/
+checkpoints/
+logs/
+wandb/
+*.ckpt
+*.pth
+*.pt
+
+# Data (raw datasets should not be committed)
+data/raw/
+data/processed/
+*.mat
+*.npy.gz
+
+# Notebooks / editors
+.ipynb_checkpoints/
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

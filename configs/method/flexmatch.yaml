@@ -1,0 +1,6 @@
+method:
+  name: flexmatch
+  threshold: 0.95
+  lambda_u: 1.0
+  temperature: 1.0
+  thresh_warmup: true

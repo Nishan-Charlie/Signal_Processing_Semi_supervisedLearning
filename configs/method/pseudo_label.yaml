@@ -1,0 +1,5 @@
+method:
+  name: pseudo_label
+  threshold: 0.95
+  consistency_weight: 1.0
+  rampup_steps: 1000

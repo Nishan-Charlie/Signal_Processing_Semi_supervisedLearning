@@ -1,0 +1,9 @@
+method:
+  name: vat
+  xi: 1.0e-6
+  epsilon: 1.0
+  n_power_iterations: 1
+  consistency_weight: 1.0
+  entropy_weight: 0.06
+  rampup_steps: 1000
+# Note: VAT uses inner autograd; disable AMP for it via `--set train.amp=false`.

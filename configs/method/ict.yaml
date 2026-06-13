@@ -1,0 +1,6 @@
+method:
+  name: ict
+  mixup_alpha: 1.0
+  ema_decay: 0.999
+  consistency_weight: 1.0
+  rampup_steps: 1000

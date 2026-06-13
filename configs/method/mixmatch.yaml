@@ -1,0 +1,6 @@
+method:
+  name: mixmatch
+  mixup_alpha: 0.75
+  temperature: 0.5
+  consistency_weight: 100.0
+  rampup_steps: 1000

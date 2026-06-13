@@ -1,0 +1,35 @@
+# DEAP valence classification with FixMatch + EEGNet, cross-subject protocol.
+_base_: [../base.yaml, ../method/fixmatch.yaml]
+
+seeds: [0, 1, 2]
+
+data:
+  name: deap
+  label_ratio: 0.1
+  protocol: subject          # leave-subjects-out (standard generalization protocol)
+  test_frac: 0.2
+  val_frac: 0.1
+  normalize: channel
+  loader:
+    root: data/raw/DEAP/data_preprocessed_python
+    target: valence          # valence | arousal | valence_arousal (4-class)
+    threshold: 5.0
+    window_sec: 4.0
+    overlap: 0.5
+
+model:
+  name: eegnet
+  args: {F1: 8, D: 2, kernel_length: 64}
+
+optim:
+  lr: 1.0e-3
+  scheduler: cosine
+  warmup_steps: 200
+
+train:
+  epochs: 100
+  batch_size: 64
+  mu: 7
+  amp: true
+  grad_clip: 1.0
+  early_stopping_patience: 20

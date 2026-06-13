@@ -1,0 +1,32 @@
+# Tiny end-to-end smoke test on synthetic data (runs in <1 min on CPU).
+_base_: [../base.yaml]
+
+seed: 0
+seeds: [0]
+
+data:
+  name: synthetic
+  label_ratio: 0.1
+  protocol: random
+  loader:
+    num_classes: 3
+    num_subjects: 4
+    num_sessions: 1
+    trials_per_class_per_session: 30
+    num_channels: 16
+    num_timepoints: 128
+
+model:
+  name: eegnet
+  args: {F1: 8, D: 2, kernel_length: 32}
+
+method:
+  name: fixmatch
+
+train:
+  epochs: 3
+  batch_size: 32
+  mu: 1
+  amp: false
+  early_stopping_patience: 0
+  log_every: 10

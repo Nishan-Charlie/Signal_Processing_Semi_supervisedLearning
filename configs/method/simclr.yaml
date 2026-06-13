@@ -1,0 +1,7 @@
+# SimCLR requires a projection head -- enable it in the model block, e.g.:
+#   model: {projection: {out_dim: 128}}
+method:
+  name: simclr
+  temperature: 0.5
+  lambda_contrast: 1.0
+  lambda_sup: 1.0

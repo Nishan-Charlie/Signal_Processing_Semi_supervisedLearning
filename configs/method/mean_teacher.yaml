@@ -1,0 +1,6 @@
+method:
+  name: mean_teacher
+  ema_decay: 0.999
+  ema_warmup: 0
+  consistency_weight: 1.0
+  rampup_steps: 1000

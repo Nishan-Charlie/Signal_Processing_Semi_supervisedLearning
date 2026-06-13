@@ -1,0 +1,30 @@
+# SEED 3-class emotion recognition with Mean Teacher + EEG Conformer.
+_base_: [../base.yaml, ../method/mean_teacher.yaml]
+
+seeds: [0, 1, 2]
+
+data:
+  name: seed
+  label_ratio: 0.05
+  protocol: subject
+  normalize: channel
+  loader:
+    root: data/raw/SEED
+    window_sec: 4.0
+    overlap: 0.5
+
+model:
+  name: eeg_conformer
+  dropout: 0.3
+
+optim:
+  lr: 5.0e-4
+  scheduler: cosine
+  warmup_steps: 300
+
+train:
+  epochs: 100
+  batch_size: 64
+  mu: 4
+  amp: true
+  early_stopping_patience: 20

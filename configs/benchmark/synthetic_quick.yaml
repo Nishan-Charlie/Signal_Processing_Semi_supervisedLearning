@@ -1,0 +1,16 @@
+# Quick, dependency-free benchmark on synthetic data: verifies the full grid +
+# table/figure/stats pipeline end-to-end. Scale up `seeds` / `label_ratios` for
+# a real comparison.
+base: configs/experiment/smoke.yaml
+
+datasets: [synthetic]
+models: [eegnet]
+methods: [supervised, pseudo_label, mean_teacher, fixmatch, your_method]
+label_ratios: [0.05, 0.1, 0.2]
+seeds: [0, 1]
+
+method_configs:
+  fixmatch: configs/method/fixmatch.yaml
+  mean_teacher: configs/method/mean_teacher.yaml
+  pseudo_label: configs/method/pseudo_label.yaml
+  your_method: configs/method/your_method.yaml
